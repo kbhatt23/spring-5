@@ -68,4 +68,9 @@ for ex : singleton it gets called only one while creating and destroy-method get
 for prototype: We get to create objects every time it is requested using context.getBean or dependecy injection , so that many times init gets called
 	but for prottype it do not calls destroy method
 	
-first construcotr gets called from container  ->  init ,method gets called -> setter method gets called -> context.close -> destory after context.close
+first construcotr gets called from container  ->  init ,method gets called -> setter method injector gets called -> context.close -> destory after context.close
+
+
+While using annotaion autowired for dependecny inject constructor dependecy do not even need autowired annotation,
+however for setter based dependency injection it is mandaotry to put @autowired annotation
+We can use autowired to inject any bean inside anyfunctions not just in setter injection
