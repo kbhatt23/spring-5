@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Define your beans here -->
+    
+    <!-- define the dependency -->
+    
+    <bean id="scopeService2"
+ 		class="basicInversionOfControl.scope.ScopeService2"
+ 		scope="prototype"
+ 		init-method="initMethod"
+ 		destroy-method="destryMethod" 		
+ 		>	 		
+ 	</bean>
+ 	 <bean id="scopeService1"
+ 		class="basicInversionOfControl.scope.ScopeService1"
+ 		scope="singleton"
+ 		init-method="initMethod"
+ 		destroy-method="destryMethod"
+ 		>	 		
+ 	</bean>
+ 	 <bean id="scopeServiceRunnerService"
+ 		class="basicInversionOfControl.scope.ScopeServiceRunnerService"
+ 		scope="singleton"
+ 		> 
+ 		<constructor-arg ref="scopeService2"></constructor-arg>
+ 		<constructor-arg ref="scopeService1"></constructor-arg>
+ 			
+ 	</bean>
+ 	
+ 	<!--  <bean id="scopeServiceRunner"
+ 		class="basicInversionOfControl.scope.ScopeServiceRunner"
+ 		scope="singleton"
+ 		> 		
+ 	</bean> -->
+    
+
+ 	
+
+
+</beans>
+
+
+
+
+

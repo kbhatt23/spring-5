@@ -1,0 +1,71 @@
+apcahe tomcat : It is web server
+username: admin
+password: admin
+
+Steps to install tomcat
+download froim https://tomcat.apache.org/download-90.cgi
+fileName: 
+32-bit/64-bit Windows Service Installer (pgp, sha512)
+Install with full
+add in servers tabs in javaee view of sts or eclipse
+
+a. go to javaEE view
+b. Click on server tabs below near console
+c. click on install new server
+d. select apche -> tomcat-9.0
+e. select root foilder of installed tomcat
+f. download spring 5 bin zip
+g. unzip the spring 5 files and copy the libs to folder lib in new java project
+h. right click properties in java projet -> java build path -> libraries tab -> add jars -> select all jar files from lib folder
+
+spring came as a repalcement to J2EE
+
+J2EE contains : jsp servlet , EJB initially with first release. EJB is super heavey weight,They added moe features with RMI and web services later on
+
+EJB disadvantages
+Lot of files to create simple bean itself : bad for developers
+since heavyweight it is very bad in performance
+
+
+Spring came to use j2ee without EJB
+
+currenlt oracle have made features of Java EE similair to that in Spring 
+
+new features in spring 5:
+added reactivce programming of spring webflux
+removed legacy integration support
+added minimum java requirement to java 8
+upgraded spring mvc to update servlet api
+
+Goals of spring
+a. Loosely coupled classes using dependency injection 
+b. above helps in unit testing 
+c. Integration with testing frameworks
+d. reduce bolierplate code
+e. Remove problems with EJB : like in EJB for a simple bean we needed to create so many files, In spring we can use annotation and remove boilerplate code
+f. Integrationms with other systems that helps in removing bolerplate code
+g. Added AOP : added aspect oriented programming for cross cutting concerns
+h. Declarative programming
+i. Supports test driven development
+
+Spring beans are nothing but class objects managed by spring IOC container. Otherwise java devloper will creqte object using constructor call
+Spring IOc will manage the scope and setting the proeprties of bean and also will allow the object to be applicable for the whole spring context
+
+spring context is the memory to load spring beans
+
+spring projects :
+These are nothing but projects made on spring core and have code functionlities if needed in your project.
+We can plug and play theses in our project. IT makes is flexible
+
+Spring inversion of control: Control and mange life cycle scope etc of classes or beans.Instead of devleoper manging it let the framework control it
+dependency injection : Use the objects in IOC step to use in other classes.Not to use constructor call but let framework do it
+
+
+for hooks ups we can use init-method and destroy-method
+
+init-method gets called after construbtor call or when bean is created
+for ex : singleton it gets called only one while creating and destroy-method gets called only once while context closes
+for prototype: We get to create objects every time it is requested using context.getBean or dependecy injection , so that many times init gets called
+	but for prottype it do not calls destroy method
+	
+first construcotr gets called from container  ->  init ,method gets called -> setter method gets called -> context.close -> destory after context.close

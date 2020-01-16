@@ -7,7 +7,7 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-	
+	<context:property-placeholder location="classpath:cricketConfig.properties"/>
     <!-- Define your beans here -->
     
     <!-- define the dependency -->
@@ -15,14 +15,27 @@
     <bean id="helloWorldService"
  		class="basicInversionOfControl.HelloWorldService">	 		
  	</bean>
+ 	 <bean id="cricketHelloWorldService"
+ 		class="basicInversionOfControl.CricketHelloWorldService">	 		
+ 	</bean>
     
  	<bean id="footballCoach"
  		class="basicInversionOfControl.FootballCoach">
- 		<constructor-arg ref="helloWorldService"></constructor-arg>	 		
+ 		<!-- constructor dependency injection -->
+ 		<constructor-arg ref="helloWorldService"></constructor-arg>	 
  	</bean>
  	
  	<bean id="basketballCoach"
  		class="basicInversionOfControl.BasketballCoach">	 		
+ 	</bean>
+ 	
+ <!-- 	setter injection -->
+ <!-- farzi coach -->
+ 	<bean id="cricketCoach"
+ 		class="basicInversionOfControl.CricketCoach">	
+ 		<property name="fakeCricketServiceKing" ref="cricketHelloWorldService" /> 	
+ 		<property name="emailForCoach" value="jaishreesitaram@raghav.com"></property>
+ 		<property name="teamNameForCoach" value="${cricket.team.name}"></property>	
  	</bean>
  	
  	

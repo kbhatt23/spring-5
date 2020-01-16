@@ -17,6 +17,10 @@ public class MySpringClient {
 		basketballcoach.startTraining();
 		
 		
+		System.out.println("cricket coach ki shuruat");
+		Coach cricketCoach = context.getBean("cricketCoach", Coach.class);
+		cricketCoach.startTraining();
+		
 		
 		//close the context
 		context.close();
