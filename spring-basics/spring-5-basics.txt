@@ -74,3 +74,13 @@ first construcotr gets called from container  ->  init ,method gets called -> se
 While using annotaion autowired for dependecny inject constructor dependecy do not even need autowired annotation,
 however for setter based dependency injection it is mandaotry to put @autowired annotation
 We can use autowired to inject any bean inside anyfunctions not just in setter injection
+
+The predestroy and postconstruct lifecycle methods can not have any method arguments also they should have a void return type as othersie makes no sense
+
+For "prototype" scoped beans, Spring does not call the @PreDestroy method.
+
+While defining @bean the method name is the bean id
+If more than one qualifier exist then we need qualifier to inject the dependency
+
+friday 17/01/2020 task at home:
+http://www.luv2code.com/downloads/udemy-spring-hibernate/solution-code-spring-mvc-config-files.zip
