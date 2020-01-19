@@ -5,11 +5,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.springmvc.basics.bean.ProfileV1;
 
 @Controller
 public class FormController {
@@ -29,6 +33,21 @@ public class FormController {
 		return "formBasic";
 	}
 	
+	@RequestMapping("/showBasicFormV1")
+	public String showBasicFormV1(Model model) {
+		ProfileV1 profile = new ProfileV1();
+		model.addAttribute("profile", profile);
+		return "formBasicV1";
+	}
+	
+	
+	@PostMapping("/submitBasicFormv11")
+	public String submitBasicFormv11(@ModelAttribute("profile") ProfileV1 profile) {
+		System.out.println("profile fetched is "+profile);
+		
+		return "formSubmitSuccess";
+		
+	}
 
 	@PostMapping("/submitBasicForm")
 	public ModelAndView formSubmitPost(@RequestParam("input1") String ia1 , @RequestParam("input2") String ia2) {
