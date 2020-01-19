@@ -1,0 +1,30 @@
+For mvc to work we need to confgure below:
+a. Create dynanic web project 
+b. Copy the spring basic jars and jstl jars in web-inf/lib folder
+c. Dispatcher servlet in web.xml : map oob class to servlet and set servlet mapping with url / to servlet name 
+d. Also map the contextconfigpath in servlet tag to another xml that contains spring beans
+e. in spring beans set component scan context to any folder in src packae
+f. set annotation based validation
+g. confgiure viewresolver tempalte bean and add property tags for prefix and suffix to define view jsp or html path
+
+
+
+Troubleshooting Tip #3 - Command-Line Option
+Steps to free port which is already used to run Tomcat server in Eclipse
+For example , suppose 8080 port is used , we need to make free 8080 to run tomcat
+
+Step 1: (open the CMD command)
+
+C:\Users\username>netstat -o -n -a | findstr 0.0:8080
+
+TCP    0.0.0.0:3000      0.0.0.0:0              LISTENING       3116
+
+Now , we can see that LISTENING port is 3116 for 8080 ,
+
+We need to kill 3116 now
+
+Step 2:
+C:\Users\username>taskkill /F /PID 3116
+
+Step 3:  Return back to Eclipse and start the Tomcat Server, it should start up now.
+
