@@ -12,5 +12,11 @@ Jai shree Ram bhai jan
 <br>
 <br>
 <a href="showBasicForm">Please click here to submit form</a>
+
+<br>
+
+Form for customer:
+<a href="customer/showform">Please click here to submit form</a>
+
 </body>
 </html>
