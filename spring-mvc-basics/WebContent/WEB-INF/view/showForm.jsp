@@ -27,6 +27,13 @@ Say jai shree ram and fill below form:
 	Age : <form:input path="age"/> 
 	<form:errors path="age" cssClass="errorClass"></form:errors>
 	
+	Course Code: <form:input path="courseCode"/>
+	<form:errors path="courseCode" cssClass="errorClass"></form:errors>
+	<br>
+	
+	multiplePrefixCode :  <form:input path="multiplePrefixCode"/>
+	<form:errors path="multiplePrefixCode" cssClass="errorClass"></form:errors>
+	
 	<input type="submit" value="Please click to submit">
 </form:form>
 

@@ -13,5 +13,10 @@ ${customer.firstName}
 ${customer.lastName}
 <br>
 ${customer.age}
+<br>
+course code val is:  ${customer.courseCode}
+<br>
+course multiple prefix: ${customer.multiplePrefixCode}
+
 </body>
 </html>
