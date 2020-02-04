@@ -1,0 +1,19 @@
+CREATE TABLE `product` (
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(45) DEFAULT NULL,
+  `product_description` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `sku` (
+  `sku_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sku_name` varchar(45) DEFAULT NULL,
+  `sku_description` varchar(45) DEFAULT NULL,
+  `sku_price` DOUBLE NULL,
+   `sku_product_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`sku_id`),
+  CONSTRAINT FK_SKU_PRODUCT FOREIGN KEY (sku_product_id)
+    REFERENCES product(product_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
