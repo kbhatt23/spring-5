@@ -1,0 +1,70 @@
+hibernate is the ORM : helps mapping java object to db tables and makes devloper focus on code rather than writing sql queries.
+
+flow of usage is a below:
+  
+                 JPA entitymanager uses -> hibernate session uses -> jdbc template code
+
+JPA have entitymanger hibernate has session
+JPA have persistence context hibernate have session factory
+
+JPA is better as it has a better convenetion and we cna get session object from entity manager  
+
+MYSQL details:
+username : root
+root password: Suarez@23
+
+
+db admin username: kbhatt23
+db admin password: Suarez@23
+
+windows service name:
+MySQL80
+
+Steps to connect mysql DB:
+
+\connect kbhatt23@localhost:3306
+
+Suarez@23 is passord
+
+\sql
+
+CREATE DATABASE  IF NOT EXISTS `hb_student_tracker`;
+USE `hb_student_tracker`;
+
+--
+-- Table structure for table `student`
+--
+
+DROP TABLE IF EXISTS `student`;
+
+CREATE TABLE `student` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(45) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+Hibernates can be used in simple java project :
+add jars under required folder of hoibernate , add jars for mysql connector then add these jars in build path of project  -> we are good to go
+
+hibernate configuration file is used by hibernate to get connection details to db
+we can set hibernate properties here in config file : like sql dialect connectionm details
+show-sql : this is to show sql gnerated by hibernated while using session object : for debugging
+
+
+Why are we using jpa entity and not hibernate:
+JPA is a generic specification. It can be used in other DB and other implementations. Hibernate is an implementation of JPA
+so to make it genric we should use JPA
+
+Session factory : A session factory is used create connections with DB. it uses hibernate config xml file reads it and create connection 
+IT is a very heavy object and hecnce created only once
+
+Session : we can get this from session factory. it is ligh weight object created at places wherever sql queries to be executed.
+Session is nothing but a wrapper to jdbc template . we can do crud operations using functions from session
+
+
+WE can create custom auto generator instead of autogenrated value streategies in entity
+
+HQL is similar to JPQL but syntax is different
