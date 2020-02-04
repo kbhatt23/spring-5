@@ -68,3 +68,15 @@ Session is nothing but a wrapper to jdbc template . we can do crud operations us
 WE can create custom auto generator instead of autogenrated value streategies in entity
 
 HQL is similar to JPQL but syntax is different
+
+
+
+Entity manager / Entity lifecycle operations: Same is there in hibernate entity
+
+a. detach : once we call this the object gets detached from hibernate sessions or persistence context in JPA case. So after this state is reached
+			whatever change we do on object after flush/transcation commit it won reflect in DB
+b. merge : We ca attache entity object back to hibernate session or persistence context. So after this the changes will reflect on DB after flush/transaction commit.
+c. flush : commit now itself
+d. remove: remove after next flush/transaction commit
+e. persist :save to db 	after next flush/transaction commit		
+f. refresh : refresh hibernate session /JPa persistent context with latest value from DB and ignore current sessions's entity object

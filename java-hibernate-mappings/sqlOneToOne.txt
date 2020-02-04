@@ -1,0 +1,20 @@
+CREATE TABLE `profile_address` (
+  `profile_address_id` int(11) NOT NULL AUTO_INCREMENT,
+  `address1` varchar(45) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `state` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`profile_address_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `profile` (
+  `profile_id` int(11) NOT NULL AUTO_INCREMENT,
+  `profile_first_name` varchar(45) DEFAULT NULL,
+  `profile_last_name` varchar(45) DEFAULT NULL,
+  `date_of_birth` DATETIME NULL,
+   `address_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`profile_id`),
+  CONSTRAINT FK_Profile_Address FOREIGN KEY (address_id)
+    REFERENCES profile_address(profile_address_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
