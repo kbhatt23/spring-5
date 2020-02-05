@@ -17,4 +17,16 @@ CREATE TABLE `profile` (
     REFERENCES profile_address(profile_address_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+one to many relationship below for profile to identification
+
+CREATE TABLE `identification` (
+  `identification_id` int(11) NOT NULL AUTO_INCREMENT,
+  `identification_type` varchar(45) NOT NULL,
+  `identification_number` varchar(45) NOT NULL,
+  `profile_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`identification_id`),
+  CONSTRAINT FK_Profile_identification FOREIGN KEY (profile_id)
+    REFERENCES profile(profile_id)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
 

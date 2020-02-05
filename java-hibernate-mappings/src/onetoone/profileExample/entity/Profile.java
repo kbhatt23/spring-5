@@ -1,6 +1,8 @@
 package onetoone.profileExample.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -32,7 +34,12 @@ public class Profile {
 			})
 	@JoinColumn(name = "address_id")
 	private ProfileAddress profileAddress;
-
+	
+	//shud dleete id if profile gets deleted
+	@OneToMany(cascade = CascadeType.PERSIST , mappedBy = "profile")
+	private List<Identification> identifications;
+	
+	
 	public Profile() {
 		super();
 	}
@@ -85,6 +92,22 @@ public class Profile {
 
 	public void setProfileAddress(ProfileAddress profileAddress) {
 		this.profileAddress = profileAddress;
+	}
+
+	public List<Identification> getIdentifications() {
+		return identifications;
+	}
+
+	/*
+	 * public void setIdentifications(List<Identification> identifications) {
+	 * this.identifications = identifications; }
+	 */
+	
+	public void addIdentification(Identification identi) {
+		if(identifications == null ) {
+			identifications = new ArrayList<Identification>();
+		}
+		identifications.add(identi);
 	}
 
 }
