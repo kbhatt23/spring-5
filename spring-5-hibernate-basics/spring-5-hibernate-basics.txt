@@ -80,3 +80,28 @@ c. flush : commit now itself
 d. remove: remove after next flush/transaction commit
 e. persist :save to db 	after next flush/transaction commit		
 f. refresh : refresh hibernate session /JPa persistent context with latest value from DB and ignore current sessions's entity object
+
+
+Lazy loading in relationship can be used in scenario :
+	like in main page we display only instructor info
+		but in instructor full details we show the list of students as well
+		
+in lazy loading while finally fetching the related entity we will need hibernate session or trnasaction up
+otherwise it will throw exception
+
+for lazy loading we can either use a new transaction during getchidlsku list call or use join fetch hpql
+
+Join fetch is a way of bypassing lazy init and force all data to load at once for that particular propertty
+eg:      Query<Product> query = session.createQuery("select i from Product i"+" "
+            		+ "JOIN FETCH i.childSkus where i.id=:productId", 
+            		Product.class
+            		);
+            		
+
+@joinColumn can be used either to refer column from current table or it can refer to reference table/
+This is the difference between @column whihc referes to same table columns and @joinColumn
+
+In @onetoOne or @manytoone : the join column refers to column in same table> in unidirection one to many we skip manytoone
+In @oneTomany : If we use joincolumn (in bidirectinla we use mappedby, in uni we skipped it) , it refers to target table's column
+            		
+            		

@@ -1,0 +1,15 @@
+CREATE TABLE `instructor_details_uni` (
+  `instructor_details_uni_id` int(11) NOT NULL AUTO_INCREMENT,
+  `instructor_details_uni_hobby` varchar(45) DEFAULT NULL,
+  `instructor_details_uni_favourite_sports` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`instructor_details_uni_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `instructor_uni` (
+  `instructor_uni_id` int(11) NOT NULL AUTO_INCREMENT,
+  `instructor_uni_name` varchar(45) DEFAULT NULL,
+   `instructor_details_uni_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`instructor_uni_id`),
+  CONSTRAINT FK_instructor_details_uni FOREIGN KEY (instructor_details_uni_id)
+    REFERENCES instructor_details_uni(instructor_details_uni_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

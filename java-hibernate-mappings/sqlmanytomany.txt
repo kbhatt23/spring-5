@@ -1,0 +1,24 @@
+
+CREATE TABLE `student_udemy` (
+  `student_id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_name` varchar(45) DEFAULT NULL,
+  `student_gpa` DOUBLE DEFAULT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `course` (
+  `course_id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_name` varchar(45) DEFAULT NULL,
+  `course_description` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`course_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `course_student` (
+  `course_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  PRIMARY KEY (`course_id`,`student_id`),
+    CONSTRAINT fk_course_id FOREIGN KEY (course_id)
+    REFERENCES course(course_id),
+     CONSTRAINT fk_student_id FOREIGN KEY (student_id)
+    REFERENCES student_udemy(student_id)
+) ;
