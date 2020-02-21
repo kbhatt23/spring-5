@@ -1,0 +1,136 @@
+aspect oriented programming solves below problem:
+a. writing everytinkig on the main service class
+b. cross cutting concerns : cross cutting means logic whihc will be used for a lot of classes or layers: enhnace us
+c. add single responcislibty 
+d. add open closed prnciple : if customization is needed no need to modify the main claass, just modify aspect class
+e. allow lot of feature without modifyin the main class
+
+
+Aspect means : a class whihc has functionity at one place , with one config we can the logic to other new or old classes
+
+AOP is primarily based on proxy design pattern
+
+additional use cases of aop:
+a. common : logging, security, saving logs in db
+b. hystrix like feature : error/exception handling
+c. auditing a function : monitoring a function
+   - how many times a functions  called, peak time of  a service function
+
+disadavntages:
+performance
+tough for new devloper to understand code flow
+
+Aspect : is the code which represent cross cutting concern
+Advice : It means what to be done and when inside aspect : eg : @before
+joint point = IT represent data like method params
+pointcut : when to apply the advice : eg pointcut = execution(com.class.test.*)
+
+Spring aop                                                     aspectj
+it is slower as uses runtime weaving                      better perofmance
+Supports aspect for spring beans only               Support aop for all pojos noit just spring beans
+jointpoint is only for methods                       jointpoint can be for constructor methods etc
+pointcut is easy                                        point cut is tough to learn
+it is lightweigh				   it takes more compile time load
+
+also spring aop can be converted easily to aspectj using @aspect annotation
+
+Using spring AOP is easy as point cut expression are easy
+but since aspect j supports all clases except beans also point cut expression is complex
+
+pointcut genral expression:
+
+? is optional : if optional is set to be empty then it means * or all combinations
+(execution(access modifier patter? return type patter class-type-pattern? method-namepatter(param-patter) thorws patter?))
+three things are optional : access modifier patter m class type patterna dna throws patter
+patterns can use wildcard : * means everything
+
+for parts that are not mandaotry default is *
+for other things whihc are mandotiry we need to manually and give * for each otherwise it will be whaterver we typed
+also mandaotry ones can not be skipped.it should have some value
+
+@poincut works only within a single aspect class
+another advice from another @aspect class can not use pointcut expression method,
+However we can still use pointcut using reference function by adding fully qualified name of class
+
+
+
+
+We can use same point cut expression in varius advices of same aspect
+This will help in allowing us to modify the expression in only one place
+and at other place we can just write logic of advice
+Steps:
+a. @pointCut(expression(...))
+public void methodName(){
+
+b. @before("medhodName")
+c. @after("methodName")
+
+pointcut can be used to combine multiuple expressions like adding && || ! operations etc
+EG : apply advice for all functions except setter and getters
+
+By default There is no order of advice exeution when more than one advice gets valid for any scenario
+
+But we can manage ordering by putting advices of same scenario in different aspect(classes) and add @order annotation which contains integer 
+
+In case two apsects have same priority then any one of them runs and then other one
+Higher priority to the above two gets called before them
+and lower priority to the above runs after the above two
+
+JoinPoint can help us get metadata of target function.
+We can get method signature , method argument , target class static references etc
+
+The method argument array will be empty size array for no arg methods and do not give any expection
+For primitive types join point converts them to object type while we iterat ethe method argument
+
+@after: gets called for all returns from target method
+@afterReturnig: gets called only after success ful return from target method: we can modify the return object at all after annotations
+@afterexceptionally: gets called only when exception happens in functions.
+
+Use cases of after annotation:
+a. auditing
+b. logging security transactions commit
+c. modifying filtering and formatting return object
+d. auditing
+
+To log Input arguments of a method it is better ot keep in @before using joinPoint
+as in case target function modifies the input object in @after it will get updated as well 	
+
+Whole AOP Flow
+
+Requestor Class -> @before (Can not modify the request but just use it) -> target method  |-----
+																					Success -> @afterReturning -> get return object and modify 
+																													or use it
+																					excpetion -> @afterException -> get the exception and use it 
+																												for logging or sending error email
+																					
+																									-> exception goes to requestor class,
+																										neccessary to handle the excexption in
+																										requesotr cla	
+																										
+																										
+
+
+@after gets called for erro as well as success case.
+Use case for @after: If there is something like resource cleaning that needs to be done always
+	whether error occurred or excpetion occureed we can do here -> like finally block
+@after gets called before @afterException block if both pointcuts are met.
+
+We shud use all three @after , @afterreturn and @afterThrow in combination
+In @after : we get flow for erro as well as success case,
+	but we do not have access of return object or excpetion object
+	@after sole purpose is like finally- > cleaning up resources and garbage
+	@Afterreturn : have access to return object
+	@afterThrowable : have access to excpetional object
+
+
+@Around===
+ Gets called before and athen we can call the target method here .
+ This is combination of @after and before
+ Use cases:
+ -	Performance monitoring : how much time taken by method
+ -  Same as @before and @after
+ -  Method preprocessing and post processing : like filtering
+ -  swallow/handle excpetion form target and return default value -> (like hystrix) -> This was not possible in@afterThrowable
+
+Questions:
+can we modify method arguments of target method in @before  : No
